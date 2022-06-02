@@ -4,7 +4,6 @@ import com.aleksB.gifrategenerator.models.OpenExchangeRate;
 import com.aleksB.gifrategenerator.service.client.ExchangeClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -15,6 +14,8 @@ public class GetRatesService {
 
     @Value("${aleksB.app.app_id}")
     private String app_id;
+    @Value("${aleksB.app.currency}")
+    private String currency;
 
     @Autowired
     ExchangeClient exchangeClient;
@@ -33,10 +34,10 @@ public class GetRatesService {
      public double getRates(String day){
         if(day.equals("today")){
             OpenExchangeRate result = exchangeClient.getTodayRates(app_id);
-            return result.getRates().get("RUB");
+            return result.getRates().get(currency);
         } else {
             OpenExchangeRate result = exchangeClient.getYesterdayRates(app_id, getDate("yesterday"));
-            return result.getRates().get("RUB");
+            return result.getRates().get(currency);
         }
 
         }
