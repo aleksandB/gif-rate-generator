@@ -1,9 +1,7 @@
 package com.aleksB.gifrategenerator.service.client;
 
 import com.aleksB.gifrategenerator.models.GifData;
-import com.aleksB.gifrategenerator.models.OpenExchangeRate;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
